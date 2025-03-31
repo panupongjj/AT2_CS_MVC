@@ -7,11 +7,11 @@
 <h2 class="h1 accordion-header"> MIT University - Candidate Management </h2>
 
 <div class="mb-4">
-    <button class="btn btn-dark">@Html.ActionLink("Add New Candidate", "Index", "Candidate", null, new { style = "text-decoration: none; color:white;" }) </button>
+    <button class="btn btn-dark">@Html.ActionLink("Add New Candidate", "Add", "Candidate", null, new { style = "text-decoration: none; color:white;" }) </button>
     <button class="btnLink btn btn-dark">@Html.ActionLink("Back to Home", "Index", "Home") </button>
 </div>
 
-<table>
+<table class="table table-responsive">
     <tr>
         <th>@Html.DisplayNameFor(m => m.name) </th>
         <th>@Html.DisplayNameFor(m => m.dob) </th>
@@ -29,8 +29,8 @@
             <td>@data.gpa</td>
             <td>@data.university</td>
             <td>@data.qualification</td>
-            <td>@Html.ActionLink("EDIT", "edit", "Post", new { @id = data.AId })</td>
-            <td>@Html.ActionLink("DELETE", "delete", "Post", new { @id = data.AId }, new { onclick = "return confirm('Click ok to del');" })</td>
+            <td>@Html.ActionLink("EDIT", "edit", "Candidate", new { @Aid = data.AId })</td>
+            <td>@Html.ActionLink("DELETE", "delete", "Candidate", new { @Aid = data.AId }, new { onclick = "return confirm('Click ok to del');" })</td>
         </tr>
     }
 

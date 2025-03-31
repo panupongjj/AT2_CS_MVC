@@ -1,0 +1,25 @@
+﻿@model AT2_CS_MVC.Models.Applicant
+
+<fieldset>
+
+    @using (Html.BeginForm())
+    {
+
+        @Html.ValidationSummary()
+        //new Post { Id = 1, newsContents = "Russian - USA", Title = " XXXX 1", publishedBy = "Jose", publishedOn = Convert.ToDateTime("2024-12-01"), publishedContry = "Thailand" },
+        <table class="table table-striped">
+            <tr><td>@Html.LabelFor(m => m.name)</td> <td>@Html.EditorFor(m => m.name)@Html.ValidationMessageFor(m => m.name)</td></tr>
+            <tr><td>@Html.LabelFor(m => m.dob)</td> <td>@Html.EditorFor(m => m.dob)</td></tr>
+            <tr><td>@Html.LabelFor(m => m.gpa)</td> <td>@Html.EditorFor(m => m.gpa)</td></tr>
+            <tr><td>@Html.LabelFor(m => m.university)</td> <td>@Html.EditorFor(m => m.university)</td></tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.qualification)</td>
+                <td>@Html.DropDownListFor(m => m.qualification, Model.ListQualification, "Select Qualification", new { IDataTokensMetadata = "ddID" })</td>
+            </tr>
+
+            <tr><td></td><td><button type="submit">Update</button></td></tr>
+        </table>
+    }
+
+
+</fieldset>
