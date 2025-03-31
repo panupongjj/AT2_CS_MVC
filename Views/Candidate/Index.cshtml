@@ -1,3 +1,42 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Candidate Home Index";
 }
+
+
+<h2 class="h1 accordion-header"> MIT University - Candidate Management </h2>
+
+<div class="mb-4">
+    <button class="btn btn-dark">@Html.ActionLink("Add New Candidate", "Index", "Candidate", null, new { style = "text-decoration: none; color:white;" }) </button>
+    <button class="btnLink btn btn-dark">@Html.ActionLink("Back to Home", "Index", "Home") </button>
+</div>
+
+
+
+
+@* 
+<br /> 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="mb-4">
+    <h4>Click and go to SAME directory (/View/Post) </h4>
+    <button class="btn btn-warning">@Html.ActionLink("Add News", "add") </button>
+    <button class="btn btn-warning"> @Html.ActionLink("Add News (Pass CSS attr)", "add", null, null, new { style = "text-decoration:none;" }) </button>
+    <a asp-action="add" class="btn btn-warning">ADD</a>
+    <button class="btn btn-warning">@Html.ActionLink("list data", "passlist") </button>
+</div>
+<div class="mb-4">
+    <h4>Click and go to OTHER directory (/View/Home) </h4>
+    @*ActionLink (*Lable , *Razor_File, *View_Directory)
+    <button class="btn btn-dark">@Html.ActionLink("Add News", "add", "Home") </button>
+    <button class="btn btn-dark"> @Html.ActionLink("Add News (Pass CSS attr)", "add", "Home", null, new { style = "text-decoration: none; " }) </button>
+    <a asp-controller="home" asp-action="add" class="btn btn-dark">ADD</a>
+</div>
+ *@
