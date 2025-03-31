@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<AT2_CS_MVC.Models.Applicant>
 @{
     ViewData["Title"] = "Candidate Home Index";
 }
@@ -11,8 +11,30 @@
     <button class="btnLink btn btn-dark">@Html.ActionLink("Back to Home", "Index", "Home") </button>
 </div>
 
+<table>
+    <tr>
+        <th>@Html.DisplayNameFor(m => m.name) </th>
+        <th>@Html.DisplayNameFor(m => m.dob) </th>
+        <th>@Html.DisplayNameFor(m => m.gpa) </th>
+        <th>@Html.DisplayNameFor(m => m.university) </th>
+        <th>@Html.DisplayNameFor(m => m.qualification) </th>
+    </tr>
 
+    @foreach (var data in Model)
+    {
 
+        <tr>
+            <td>@data.name</td>
+            <td>@Convert.ToDateTime(data.dob).ToString("dd-MM-yyyy")</td>
+            <td>@data.gpa</td>
+            <td>@data.university</td>
+            <td>@data.qualification</td>
+            <td>@Html.ActionLink("EDIT", "edit", "Post", new { @id = data.AId })</td>
+            <td>@Html.ActionLink("DELETE", "delete", "Post", new { @id = data.AId }, new { onclick = "return confirm('Click ok to del');" })</td>
+        </tr>
+    }
+
+</table>
 
 @* 
 <br /> 

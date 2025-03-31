@@ -1,0 +1,14 @@
+{
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ],
+
+  "ConnectionStrings": { "DBConnection": "Server=LAPTOP-PJ\\SQLEXPRESS;Database=MIT;Integrated Security=True;Encrypt=False" }
+
+
+}
