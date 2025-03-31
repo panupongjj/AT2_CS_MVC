@@ -28,7 +28,8 @@ namespace AT2_CS_MVC
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                //pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Candidate}/{action=Index}/{id?}");
 
             app.Run();
         }
