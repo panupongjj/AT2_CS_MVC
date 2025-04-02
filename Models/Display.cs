@@ -13,9 +13,10 @@ namespace AT2_CS_MVC.Models
         [Display(Name = "Date of birth")]
         public DateTime dob { get; set; }
 
-        
         public int QId { get; set; }
+        
         [Display(Name = "GPA")]
+        [Range(3.0, 4.0, ErrorMessage = "GPA must be greater or equal  3.0")]
         public double gpa { get; set; }
 
         [Display(Name = "University")]

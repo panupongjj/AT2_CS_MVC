@@ -10,7 +10,7 @@
         <table class="table table-striped">
             <tr><td>@Html.LabelFor(m => m.name)</td> <td>@Html.EditorFor(m => m.name)@Html.ValidationMessageFor(m => m.name)</td></tr>
             <tr><td>@Html.LabelFor(m => m.dob)</td> <td>@Html.EditorFor(m => m.dob)</td></tr>
-            <tr><td>@Html.LabelFor(m => m.gpa)</td> <td>@Html.EditorFor(m => m.gpa)</td></tr>
+            <tr><td>@Html.LabelFor(m => m.gpa)</td> <td>@Html.EditorFor(m => m.gpa)@Html.ValidationMessageFor(m => m.gpa)</td></tr>
             <tr><td>@Html.LabelFor(m => m.university)</td> <td>@Html.EditorFor(m => m.university)</td></tr>
             <tr>
                 <td>@Html.LabelFor(m => m.Qname)</td>

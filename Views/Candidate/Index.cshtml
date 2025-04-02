@@ -8,16 +8,19 @@
 
 <div class="mb-4">
     <button class="btn btn-dark">@Html.ActionLink("Add New Candidate", "Add", "Candidate", null, new { style = "text-decoration: none; color:white;" }) </button>
-    <button class="btnLink btn btn-dark">@Html.ActionLink("Back to Home", "Index", "Home") </button>
+    <br>
+    <br>
+    <input class="text text-black-50"type="text" id="searchInput" placeholder="Search Name or Univesity" onkeyup="filterTable()" />
+    @* <button class="btnLink btn btn-dark">@Html.ActionLink("Back to Home", "Index", "Home") </button> *@
 </div>
 
-<table class="table table-responsive">
-    <tr>
-        <th>@Html.DisplayNameFor(m => m.name) </th>
-        <th>@Html.DisplayNameFor(m => m.dob) </th>
-        <th>@Html.DisplayNameFor(m => m.gpa) </th>
-        <th>@Html.DisplayNameFor(m => m.university) </th>
-        <th>@Html.DisplayNameFor(m => m.Qname) </th>
+<table class="table table-responsive" id="dataTable">
+    <tr >
+        <th onclick="sortTable(0)">@Html.DisplayNameFor(m => m.name) ⇅</th>
+        <th onclick="sortTable(1)">@Html.DisplayNameFor(m => m.dob) ⇅</th>
+        <th onclick="sortTable(2)">@Html.DisplayNameFor(m => m.gpa) ⇅</th>
+        <th onclick="sortTable(3)">@Html.DisplayNameFor(m => m.university) ⇅</th>
+        <th onclick="sortTable(4)">@Html.DisplayNameFor(m => m.Qname) ⇅</th>
     </tr>
 
     @foreach (var data in Model)
@@ -36,29 +39,4 @@
 
 </table>
 
-@* 
-<br /> 
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<div class="mb-4">
-    <h4>Click and go to SAME directory (/View/Post) </h4>
-    <button class="btn btn-warning">@Html.ActionLink("Add News", "add") </button>
-    <button class="btn btn-warning"> @Html.ActionLink("Add News (Pass CSS attr)", "add", null, null, new { style = "text-decoration:none;" }) </button>
-    <a asp-action="add" class="btn btn-warning">ADD</a>
-    <button class="btn btn-warning">@Html.ActionLink("list data", "passlist") </button>
-</div>
-<div class="mb-4">
-    <h4>Click and go to OTHER directory (/View/Home) </h4>
-    @*ActionLink (*Lable , *Razor_File, *View_Directory)
-    <button class="btn btn-dark">@Html.ActionLink("Add News", "add", "Home") </button>
-    <button class="btn btn-dark"> @Html.ActionLink("Add News (Pass CSS attr)", "add", "Home", null, new { style = "text-decoration: none; " }) </button>
-    <a asp-controller="home" asp-action="add" class="btn btn-dark">ADD</a>
-</div>
- *@
+<script src="~/js/index_candidate.js" asp-append-version="true"></script>

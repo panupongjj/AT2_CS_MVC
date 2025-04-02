@@ -24,7 +24,7 @@ namespace AT2_CS_MVC.Controllers
         public IActionResult add()
         {
             Display Ap_list = new Display();
-  
+            Ap_list.dob = DateTime.Now;
             FillArrayQ(Ap_list);
             return View(Ap_list);
 
@@ -120,25 +120,21 @@ namespace AT2_CS_MVC.Controllers
         }
         private List<Display> GetQualificationDetail()
         {
-            var Ap_list = _db.ApplicantsDB.ToList<Applicant>();
-            var QuaList = _db.QualificationsDB.ToList<Qualification>();
-            List<Display> Display_list = new List<Display>();
-            foreach (var ap_item in Ap_list.ToList()) {
-                foreach (var qua_item in QuaList.ToList()) {
-                    if (ap_item.QId == qua_item.QId) {
-                        Display ds = new Display();
-                        ds.AId = ap_item.AId;
-                        ds.name = ap_item.name;
-                        ds.dob = ap_item.dob;
-                        ds.QId = ap_item.QId;
-                        ds.gpa = ap_item.gpa;
-                        ds.university = ap_item.university;
-                        ds.Qname = qua_item.Qname;
-                        FillArrayQ(ds);
-                        Display_list.Add(ds);
-                    }
-                }
-            }
+            var Display_list = (from ap in _db.ApplicantsDB
+                                join qua in _db.QualificationsDB
+                                on ap.QId equals qua.QId
+                                orderby ap.gpa descending  // Ordering by GPA in descending order
+                                select new Display
+                                {
+                                    AId = ap.AId,
+                                    name = ap.name,
+                                    dob = ap.dob,
+                                    QId = ap.QId,
+                                    gpa = ap.gpa,
+                                    university = ap.university,
+                                    Qname = qua.Qname
+                                }).ToList();
+
             return Display_list;
           
         }
