@@ -1,4 +1,4 @@
-﻿@model AT2_CS_MVC.Models.Applicant
+﻿@model AT2_CS_MVC.Models.Display
 
 <fieldset>
 
@@ -13,10 +13,10 @@
             <tr><td>@Html.LabelFor(m => m.gpa)</td> <td>@Html.EditorFor(m => m.gpa)</td></tr>
             <tr><td>@Html.LabelFor(m => m.university)</td> <td>@Html.EditorFor(m => m.university)</td></tr>
             <tr>
-                <td>@Html.LabelFor(m => m.qualification)</td>
-                <td>@Html.DropDownListFor(m => m.qualification, Model.ListQualification, "Select Qualification", new { IDataTokensMetadata = "ddID" })</td>
+                <td>@Html.LabelFor(m => m.Qname)</td>
+                <td>@Html.DropDownListFor(m => m.Qname, Model.ListQualification, "Select Qualification", new { IDataTokensMetadata = "ddID" })</td>
             </tr>
-
+            <div style="visibility: hidden;">@Html.LabelFor(m => m.AId)@Html.EditorFor(m => m.AId)</div>
             <tr><td></td><td><button type="submit">Update</button></td></tr>
         </table>
     }

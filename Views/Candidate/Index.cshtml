@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AT2_CS_MVC.Models.Applicant>
+﻿@model IEnumerable<AT2_CS_MVC.Models.Display>
 @{
     ViewData["Title"] = "Candidate Home Index";
 }
@@ -17,7 +17,7 @@
         <th>@Html.DisplayNameFor(m => m.dob) </th>
         <th>@Html.DisplayNameFor(m => m.gpa) </th>
         <th>@Html.DisplayNameFor(m => m.university) </th>
-        <th>@Html.DisplayNameFor(m => m.qualification) </th>
+        <th>@Html.DisplayNameFor(m => m.Qname) </th>
     </tr>
 
     @foreach (var data in Model)
@@ -28,9 +28,9 @@
             <td>@Convert.ToDateTime(data.dob).ToString("dd-MM-yyyy")</td>
             <td>@data.gpa</td>
             <td>@data.university</td>
-            <td>@data.qualification</td>
-            <td>@Html.ActionLink("EDIT", "edit", "Candidate", new { @Aid = data.AId })</td>
-            <td>@Html.ActionLink("DELETE", "delete", "Candidate", new { @Aid = data.AId }, new { onclick = "return confirm('Click ok to del');" })</td>
+            <td>@data.Qname</td>
+            <td>@Html.ActionLink("EDIT", "edit", "Candidate", new { @id = data.AId })</td>
+            <td>@Html.ActionLink("DELETE", "delete", "Candidate", new { @id = data.AId }, new { onclick = "return confirm('Click ok to del');" })</td>
         </tr>
     }
 

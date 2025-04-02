@@ -5,7 +5,7 @@ namespace AT2_CS_MVC.Models
     public class ApplicantDbContext: IdentityDbContext
     {
         public DbSet<Applicant> ApplicantsDB { get; set; }
-
+        public DbSet<Qualification> QualificationsDB { get; set; }
         public ApplicantDbContext(DbContextOptions<ApplicantDbContext> options) 
             : base(options)
         {
