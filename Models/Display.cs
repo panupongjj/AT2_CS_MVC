@@ -16,15 +16,31 @@ namespace AT2_CS_MVC.Models
         public int QId { get; set; }
         
         [Display(Name = "GPA")]
-        [Range(3.0, 4.0, ErrorMessage = "GPA must be greater or equal  3.0")]
+        [Range(3.0, 4.0, ErrorMessage = "The GPA must be between 3.0 and 4.0")]
+        [Required(ErrorMessage = "GPA is required.")]
         public double gpa { get; set; }
 
         [Display(Name = "University")]
         public string university { get; set; }
 
-        public List<SelectListItem> ListQualification = new List<SelectListItem>();
+        //[RequiredListValidation(ErrorMessage = "At least one qualification is required.")]
+        public List<SelectListItem> ListQualification { get; set; } = new List<SelectListItem>();
+
         [Display(Name = "Qualification")]
+        [Required(ErrorMessage = "Qualification is required.")]
         public string? Qname { get; set; }
 
     }
+
+    //public class RequiredListValidation : ValidationAttribute
+    //{
+    //    public override bool IsValid(object value)
+    //    {
+    //        if (value is List<SelectListItem> list)
+    //        {
+    //            return list != null && list.Count > 0;
+    //        }
+    //        return false;
+    //    }
+    //}
 }

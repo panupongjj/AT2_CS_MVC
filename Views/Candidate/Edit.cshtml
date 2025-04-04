@@ -14,9 +14,9 @@
             <tr><td>@Html.LabelFor(m => m.university)</td> <td>@Html.EditorFor(m => m.university)</td></tr>
             <tr>
                 <td>@Html.LabelFor(m => m.Qname)</td>
-                <td>@Html.DropDownListFor(m => m.Qname, Model.ListQualification, "Select Qualification", new { IDataTokensMetadata = "ddID" })</td>
+                <td>@Html.DropDownListFor(m => m.Qname, Model.ListQualification, "Select Qualification", new { IDataTokensMetadata = "ddID" })@Html.ValidationMessageFor(m => m.Qname)</td>
             </tr>
-            <div style="visibility: hidden;">@Html.LabelFor(m => m.AId)@Html.EditorFor(m => m.AId)</div>
+            @Html.HiddenFor(m => m.AId)
             <tr><td></td><td><button type="submit">Update</button></td></tr>
         </table>
     }

@@ -25,6 +25,7 @@ namespace AT2_CS_MVC.Controllers
         {
             Display Ap_list = new Display();
             Ap_list.dob = DateTime.Now;
+            
             FillArrayQ(Ap_list);
             return View(Ap_list);
 
@@ -37,8 +38,21 @@ namespace AT2_CS_MVC.Controllers
             ap.name = Ap_list.name;
             ap.dob = Ap_list.dob;
             //find the QId by Qname 
-            var quaData = _db.QualificationsDB.FirstOrDefault(q => q.Qname == Ap_list.Qname);
-            ap.QId = quaData.QId;
+            //var quaData = _db.QualificationsDB.FirstOrDefault(q => q.Qname == Ap_list.Qname);
+
+                //if (quaData != null)
+                //{
+                //    ap.QId = quaData.QId; // Assign QId only if a match is found
+                //}
+           
+            if (int.TryParse(Ap_list.Qname, out int qId))
+            {
+                ap.QId = qId;
+            }
+            else
+            {
+                ap.QId = 0;
+            }
             ap.gpa = Ap_list.gpa;
             ap.university = Ap_list.university;
             try
@@ -85,8 +99,15 @@ namespace AT2_CS_MVC.Controllers
             ds.QId = editData.QId;
             ds.gpa = editData.gpa;
             ds.university = editData.university;
-            
-            FillArrayQ(ds);
+            ds.ListQualification = _db.QualificationsDB
+                                    .Select(q => new SelectListItem
+                                    {
+                                        Value = q.QId.ToString(),
+                                        Text = q.Qname,
+                                        Selected = q.QId == editData.QId // Ensure previous value is selected
+                                    })
+                                .ToList();
+            //FillArrayQ(ds);
             return View(ds);
         }
 
@@ -98,14 +119,23 @@ namespace AT2_CS_MVC.Controllers
             ap.name = editData.name;
             ap.dob = editData.dob;
             //find the QId by Qname 
-            var quaData = _db.QualificationsDB.FirstOrDefault(q => q.Qname == editData.Qname);
-            ap.QId = quaData.QId;
+            //var quaData = _db.QualificationsDB.FirstOrDefault(q => q.Qname == editData.Qname);
+            // Convert QId string back to integer before saving
+            if (int.TryParse(editData.Qname, out int qId))
+            {
+                ap.QId = qId;
+            }
+            else
+            {
+                ap.QId = 0; // Or any default value that makes sense
+            }
+            //ap.QId = quaData.QId;
             ap.gpa = editData.gpa;
             ap.university = editData.university;
 
 
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && editData.Qname != null)
             {
                 _db.ApplicantsDB.Update(ap);
                 _db.SaveChanges();
@@ -142,10 +172,26 @@ namespace AT2_CS_MVC.Controllers
         private void FillArrayQ(Display pref)
         {
 
-            pref.ListQualification.Add(new SelectListItem { Text = "Master of Data Science", Value = "Master of Data Science" });
-            pref.ListQualification.Add(new SelectListItem { Text = "Master of Artificial Intelligence", Value = "Master of Artificial Intelligence" });
-            pref.ListQualification.Add(new SelectListItem { Text = "Master of Information Technology", Value = "Master of Information Technology" });
-            pref.ListQualification.Add(new SelectListItem { Text = "Master of Science(Statistics)", Value = "Master of Science(Statistics)" });
+            var qua = _db.QualificationsDB.ToList();
+
+            //ds.ListQualification = _db.QualificationsDB
+            //            .Select(q => new SelectListItem
+            //            {
+            //                Value = q.QId.ToString(),
+            //                Text = q.Qname,
+            //                Selected = q.QId == editData.QId // Ensure previous value is selected
+            //            })
+            //        .ToList();
+
+            foreach (var item in qua)
+            {
+                pref.ListQualification.Add(new SelectListItem { Value = item.QId.ToString(), Text = item.Qname, });
+            }
+
+           
+            //pref.ListQualification.Add(new SelectListItem { Text = "Master of Artificial Intelligence", Value = "Master of Artificial Intelligence" });
+            //pref.ListQualification.Add(new SelectListItem { Text = "Master of Information Technology", Value = "Master of Information Technology" });
+            //pref.ListQualification.Add(new SelectListItem { Text = "Master of Science(Statistics)", Value = "Master of Science (Statistics)" });
 
         }
      
